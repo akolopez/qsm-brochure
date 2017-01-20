@@ -6,7 +6,7 @@ import 'react-select/dist/react-select.css';
 
 import 'whatwg-fetch'
 
-const PRODUCT_SAMPLE = require('./product_sample')
+const PRODUCT_SAMPLE = require('./product_page_sample_data')
 
 class ProductPage extends Component {
   constructor(props) {
@@ -47,26 +47,28 @@ class ProductPage extends Component {
   }
 
   loadProducts() {
-    function checkStatus(response) {
-      if (response.status >= 200 && response.status < 300) {
-        return response
-      } else {
-        var error = new Error(response.statusText)
-        error.response = response
-        throw error
-      }
-    }
+    this.setState({'products': PRODUCT_SAMPLE.products})
+    // Use this in the future.
+    // function checkStatus(response) {
+    //   if (response.status >= 200 && response.status < 300) {
+    //     return response
+    //   } else {
+    //     var error = new Error(response.statusText)
+    //     error.response = response
+    //     throw error
+    //   }
+    // }
 
-    fetch('/api/product/', {
-      method: 'GET'
-    }).then(checkStatus)
-      .then(response => {
-      return response.json();
-    }).then(json => {
-      this.setState({'products': json});
-    }).catch(function(error) {
-      console.log('request failed', error)
-    });
+    // fetch('/api/product/', {
+    //   method: 'GET'
+    // }).then(checkStatus)
+    //   .then(response => {
+    //   return response.json();
+    // }).then(json => {
+    //   this.setState({'products': json});
+    // }).catch(function(error) {
+    //   console.log('request failed', error)
+    // });
   }
 
 
