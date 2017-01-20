@@ -6,6 +6,8 @@ import 'react-select/dist/react-select.css';
 
 import 'whatwg-fetch'
 
+const PRODUCT_SAMPLE = require('./product_sample')
+
 class ProductPage extends Component {
   constructor(props) {
     super(props);
@@ -71,45 +73,6 @@ class ProductPage extends Component {
 
   render() {
     //TODO(miggy): clean up this shit.
-    var types = [
-      {
-        value: null, label: 'Any'
-      },
-      {
-        value: 'vitamins', label: 'Vitamins'
-      },
-      {
-        value: 'antibiotics', label: 'Antibiotics'
-      },
-      {
-        value: 'basemix', label: 'Base Mixes'
-      }
-    ]
-
-    var brands = [
-      {
-        value: null, label: 'Any'
-      },
-      {
-        value: 'msd', label: 'MSD'
-      },
-      {
-        value: 'zagro', label: 'Zagro'
-      }
-    ]
-
-    var species = [
-      {
-        value: null, label: 'Any'
-      },
-      {
-        value: 'swine', label: 'Swine'
-      },
-      {
-        value: 'poultry', label: 'Poultry'
-      }
-    ]
-
     return (
       <div>
         <h2>Our Products</h2>
@@ -131,7 +94,7 @@ class ProductPage extends Component {
                 simpleValue
                 value={ this.state.filterByType }
                 placeholder="Any Type"
-                options={ types }
+                options={ PRODUCT_SAMPLE.types }
                 onChange={ this.changeFilterByType }
             />
             <Select
@@ -139,7 +102,7 @@ class ProductPage extends Component {
                 simpleValue
                 value={ this.state.filterByBrand }
                 placeholder="Any Brand"
-                options={ brands }
+                options={ PRODUCT_SAMPLE.brands }
                 onChange={ this.changeFilterByBrand }
             />
             <Select
@@ -147,7 +110,7 @@ class ProductPage extends Component {
                 simpleValue
                 value={ this.state.filterBySpecies }
                 placeholder="Any Species"
-                options={ species }
+                options={ PRODUCT_SAMPLE.brands }
                 onChange={ this.changeFilterBySpecies }
             />
           </div>
