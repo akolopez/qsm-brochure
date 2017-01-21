@@ -112,26 +112,25 @@ class ProductPage extends Component {
                 simpleValue
                 value={ this.state.filterBySpecies }
                 placeholder="Any Species"
-                options={ PRODUCT_SAMPLE.brands }
+                options={ PRODUCT_SAMPLE.species }
                 onChange={ this.changeFilterBySpecies }
             />
           </div>
           <ul>
             {
               this.state.products.filter(product => {
-                return this.state.filterByType ? this.state.filterByType.toLowerCase() === product.type.toLowerCase() : true &&
-                        this.state.filterByBrand ? this.state.filterByBrand.toLowerCase() === product.brand.toLowerCase() : true &&
-                        this.state.filterBySpecies ? this.state.filterBySpecies.toLowerCase() === product.species.toLowerCase() : true
+                return ((this.state.filterByType ? this.state.filterByType.toLowerCase() === product.type.toLowerCase() : true) &&
+                        (this.state.filterByBrand ? this.state.filterByBrand.toLowerCase() === product.brand.toLowerCase() : true) &&
+                        (this.state.filterBySpecies ? this.state.filterBySpecies.toLowerCase() === product.species.toLowerCase() : true))
               }).filter(product => {
                 return this.state.filterByAny.every(filterObject => {
                   var filterString = filterObject.value
                   return product.name.toLowerCase().includes(filterString.toLowerCase()) ||
                   product.description.toLowerCase().includes(filterString.toLowerCase()) ||
-                  product.brand.toLowerCase().includes(filterString.toLowerCase())
+                  product.brand.toLowerCase().includes(filterString.toLowerCase()) ||
+                  product.species.toLowerCase().includes(filterString.toLowerCase())
                 })
               }).map(filteredProduct => {
-                console.log(filteredProduct.name)
-                console.log(filteredProduct)
                 return (
                   <li key={ filteredProduct.id.toString() } >
                     <Product product={ filteredProduct } />
