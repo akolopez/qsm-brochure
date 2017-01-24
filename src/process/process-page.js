@@ -7,7 +7,7 @@ class ProcessPage extends Component {
   render() {
     return (
       <div>
-        <SectionBanner srcName="sample" alt="process-header" />
+        <SectionBanner srcName="warehouse_zuuft5" alt="process-header" />
         <SectionTitle
           title="Our Process"
         />

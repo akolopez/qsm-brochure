@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Select from 'react-select'
 import Product from './product'
 
+import SectionBanner from '../widgets/section-banner'
 import SectionTitle from '../widgets/section-title'
 
 import 'react-select/dist/react-select.css';
@@ -79,6 +80,7 @@ class ProductPage extends Component {
     //TODO(miggy): clean up this shit.
     return (
       <div>
+        <SectionBanner srcName="poultry_uc4qd3" alt="product-page-header" />
         <SectionTitle title="Our Products"/>
         <div>
           <div>
