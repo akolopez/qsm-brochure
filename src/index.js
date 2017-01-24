@@ -10,6 +10,9 @@ import ProcessPage from './process/process-page'
 import ProductPage from './products/product-page'
 import AboutPage from './about/about-page'
 
+import './styles/main.css'
+import 'purecss/build/pure.css'
+
 ReactDOM.render(
   <Router history={ browserHistory }>
     <Route component={ App }>

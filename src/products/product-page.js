@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Select from 'react-select'
 import Product from './product'
 
+import SectionTitle from '../widgets/section-title'
+
 import 'react-select/dist/react-select.css';
 
 import 'whatwg-fetch'
@@ -77,16 +79,16 @@ class ProductPage extends Component {
     //TODO(miggy): clean up this shit.
     return (
       <div>
-        <h2>Our Products</h2>
+        <SectionTitle title="Our Products"/>
         <div>
           <div>
             <Select.Creatable
+                promptTextCreator={ label => { return "filter by: " + label }}
                 name="search-all"
                 multi
                 value={ this.state.filterByAny }
                 placeholder="Begin Searching..."
                 onChange={ this.changeFilterByAny }
-                addLabelText="{label}"
                 noResultsText={ false }
             />
           </div>
@@ -116,29 +118,25 @@ class ProductPage extends Component {
                 onChange={ this.changeFilterBySpecies }
             />
           </div>
-          <ul>
-            {
-              this.state.products.filter(product => {
-                return ((this.state.filterByType ? this.state.filterByType.toLowerCase() === product.type.toLowerCase() : true) &&
-                        (this.state.filterByBrand ? this.state.filterByBrand.toLowerCase() === product.brand.toLowerCase() : true) &&
-                        (this.state.filterBySpecies ? this.state.filterBySpecies.toLowerCase() === product.species.toLowerCase() : true))
-              }).filter(product => {
-                return this.state.filterByAny.every(filterObject => {
-                  var filterString = filterObject.value
-                  return product.name.toLowerCase().includes(filterString.toLowerCase()) ||
-                  product.description.toLowerCase().includes(filterString.toLowerCase()) ||
-                  product.brand.toLowerCase().includes(filterString.toLowerCase()) ||
-                  product.species.toLowerCase().includes(filterString.toLowerCase())
-                })
-              }).map(filteredProduct => {
-                return (
-                  <li key={ filteredProduct.id.toString() } >
-                    <Product product={ filteredProduct } />
-                  </li>
-                )
+          {
+            this.state.products.filter(product => {
+              return ((this.state.filterByType ? this.state.filterByType.toLowerCase() === product.type.toLowerCase() : true) &&
+                      (this.state.filterByBrand ? this.state.filterByBrand.toLowerCase() === product.brand.toLowerCase() : true) &&
+                      (this.state.filterBySpecies ? this.state.filterBySpecies.toLowerCase() === product.species.toLowerCase() : true))
+            }).filter(product => {
+              return this.state.filterByAny.every(filterObject => {
+                var filterString = filterObject.value
+                return product.name.toLowerCase().includes(filterString.toLowerCase()) ||
+                product.description.toLowerCase().includes(filterString.toLowerCase()) ||
+                product.brand.toLowerCase().includes(filterString.toLowerCase()) ||
+                product.species.toLowerCase().includes(filterString.toLowerCase())
               })
-            }
-          </ul>
+            }).map(filteredProduct => {
+              return (
+                <Product key={filteredProduct.id} product={ filteredProduct } />
+              )
+            })
+          }
         </div>
       </div>
     )

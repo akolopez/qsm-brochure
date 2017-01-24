@@ -4,7 +4,7 @@ import { Image } from 'cloudinary-react'
 const config = require('../config.js')
 
 const SectionBanner = (props) => (
-  <div>
+  <div className="is-center">
     <Image cloudName={ config.cloudinary.name } publicId={ props.srcName } width="300" crop="scale" />
   </div>
 );

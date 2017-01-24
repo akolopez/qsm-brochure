@@ -1,9 +1,7 @@
 import React from 'react';
 
 const SectionTitle = (props) => (
-  <div>
-    <div><h2>{ props.title }</h2></div>
-  </div>
+  <h2 className="content-head">{ props.title }</h2>
 );
 
 export default SectionTitle;
