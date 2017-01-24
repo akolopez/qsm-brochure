@@ -24,6 +24,11 @@ label {
     color: #34495e;
 }
 
+img.is-center {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
 .padded {
   margin-left: 2%;
   margin-right: 2%;
